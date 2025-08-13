@@ -60,33 +60,33 @@ model.fit(df['titular'], df['categoria'])
 joblib.dump(model, 'modelo_clasificador.pkl')
 
 # ================================
-# 3. Información de cada tipo de energía
+# 3. Información de cada tipo de energía (con rutas locales)
 # ================================
 info_energias = {
     "solar": {
         "definicion": "La energía solar aprovecha la radiación del Sol para generar electricidad o calor.",
         "dato": "En solo una hora, el Sol produce suficiente energía para abastecer al mundo entero durante un año.",
-        "imagen": "https://upload.wikimedia.org/wikipedia/commons/0/0c/Solar_panels_in_Ohio.jpg"
+        "imagen": "imagenesparamostrar/solar.jpg"
     },
     "eólica": {
         "definicion": "La energía eólica convierte la fuerza del viento en electricidad mediante aerogeneradores.",
         "dato": "Un solo aerogenerador puede alimentar hasta 1.500 hogares al año.",
-        "imagen": "https://upload.wikimedia.org/wikipedia/commons/3/3a/Wind_Turbine_Farm.jpg"
+        "imagen": "imagenesparamostrar/eolica.jpg"
     },
     "biomasa": {
         "definicion": "La biomasa utiliza materia orgánica como residuos agrícolas o forestales para producir energía.",
         "dato": "La biomasa es la fuente renovable más antigua usada por el ser humano.",
-        "imagen": "https://upload.wikimedia.org/wikipedia/commons/3/3f/Biomass_powerplant.jpg"
+        "imagen": "imagenesparamostrar/biomasa.jpg"
     },
     "hidroeléctrica": {
         "definicion": "La energía hidroeléctrica genera electricidad aprovechando la fuerza del agua en movimiento.",
         "dato": "Es la fuente renovable más utilizada en el mundo, representando más del 16% de la electricidad global.",
-        "imagen": "https://upload.wikimedia.org/wikipedia/commons/6/6b/ThreeGorgesDam-China2009.jpg"
+        "imagen": "imagenesparamostrar/hidroelectrica.jpg"
     },
     "geotérmica": {
         "definicion": "La energía geotérmica aprovecha el calor interno de la Tierra para producir electricidad o calefacción.",
         "dato": "Islandia genera casi el 100% de su electricidad usando fuentes renovables, gran parte geotérmica.",
-        "imagen": "https://upload.wikimedia.org/wikipedia/commons/d/d8/Nesjavellir_Geothermal_Power_Plant.jpg"
+        "imagen": "imagenesparamostrar/geotermica.jpg"
     }
 }
 
@@ -112,4 +112,5 @@ if titular_usuario:
     st.subheader("ℹ Información sobre esta energía")
     st.write(f"**Definición:** {info_energias[categoria_predicha]['definicion']}")
     st.write(f"**Dato curioso:** {info_energias[categoria_predicha]['dato']}")
-    st.image(info_energias[categoria_predicha]['imagen'], use_column_width=True)
+    st.image(info_energias[categoria_predicha]['imagen'], use_container_width=True)
+
