@@ -4,6 +4,27 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.pipeline import Pipeline
 import joblib
+from PIL import Image
+import os
+
+# ================================
+# 0. Optimizar imágenes antes de cargar la app
+# ================================
+def optimizar_imagenes(carpeta, ancho=800, alto=600, calidad=70):
+    if not os.path.exists(carpeta):
+        return
+    for archivo in os.listdir(carpeta):
+        if archivo.lower().endswith(('.png', '.jpg', '.jpeg')):
+            ruta = os.path.join(carpeta, archivo)
+            try:
+                img = Image.open(ruta)
+                img = img.resize((ancho, alto))  # redimensionar
+                img.save(ruta, optimize=True, quality=calidad)  # optimizar y comprimir
+            except Exception as e:
+                print(f"Error optimizando {archivo}: {e}")
+
+# Ejecutar optimización
+optimizar_imagenes("imagenesparamostrar", ancho=800, alto=600, calidad=70)
 
 # ================================
 # 1. Dataset interno para entrenamiento
@@ -112,5 +133,5 @@ if titular_usuario:
     st.subheader("ℹ Información sobre esta energía")
     st.write(f"**Definición:** {info_energias[categoria_predicha]['definicion']}")
     st.write(f"**Dato curioso:** {info_energias[categoria_predicha]['dato']}")
-    st.image(info_energias[categoria_predicha]['imagen'], use_container_width=True)
+    st.image(info_energias[categoria_predicha]['imagen'], width=500)
 
